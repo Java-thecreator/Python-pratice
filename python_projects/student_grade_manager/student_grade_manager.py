@@ -11,8 +11,8 @@ while True:
     print("\nMain Menu")
     print("1. Add Student")
     print("2. View Student")
-    print("3. Calculate Grade")
-    print("4. Search Student")
+    print("3. Search Student")
+    print("4.  Calculate Grade ")
     print("5. Exit")
 
     choice = input("\nEnter any option: ")
@@ -64,13 +64,33 @@ while True:
 
     # OPTION 2: VIEW STUDENTS
     elif choice == "2":
-        print("View Student Selected")
-
-    # OPTION 3: CALCULATE GRADE
+        if not students:
+            print("No students registered yet")
+        else:
+            print("=======Registered Students=========")
+            for index, student in enumerate(students, start=1):
+                print(f"Student {index}")
+                print("Name:", student["name"])
+                print("Score:", student["score"])    
+                print("Grade:", student["grade"])  
+                print("\n================================================")       
+ 
+    # OPTION 3: SEARCH STUDENT
     elif choice == "3":
-        print("Calculate Student Grade")
+        search_name=input("Enter the name of student to search: ")
+        found = False
+        for student in students:
+           
+            if student["name"].lower()==search_name.lower():
+                found=True
+                print("Name:", student["name"])
+                print("Score:", student["score"])    
+                print("Grade:", student["grade"]) 
+                break
+        if not found:    
+            print("Student not found")
 
-    # OPTION 4: SEARCH STUDENT
+    # OPTION 4: CALCULATE GRADE
     elif choice == "4":
         print("Search Student")
 
