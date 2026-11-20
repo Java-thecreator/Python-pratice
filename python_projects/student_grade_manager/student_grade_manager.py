@@ -12,7 +12,7 @@ while True:
     print("1. Add Student")
     print("2. View Student")
     print("3. Search Student")
-    print("4.  Calculate Grade ")
+    print("4. Delete Student")
     print("5. Exit")
 
     choice = input("\nEnter any option: ")
@@ -88,12 +88,37 @@ while True:
                 print("Grade:", student["grade"]) 
                 break
         if not found:    
-            print("Student not found")
+            print("Student not found.")
 
-    # OPTION 4: CALCULATE GRADE
+    # OPTION 4: DELETE STUDENT 
     elif choice == "4":
-        print("Search Student")
-
+      if not students:
+        print("No students  registered yet")
+      else:
+        delete_name=input("Enter the name of Student to be deleted ") 
+        found=False  
+        for student in students:
+            if student["name"].lower()==delete_name.lower():
+                found=True
+                print("Student Found!!")           
+                print("Name:", student["name"])
+                print("Score:", student["score"])    
+                print("Grade:", student["grade"])
+                  
+                confirm=input("Are you sure you want to delete this student(y/n): ").lower()
+                while confirm != "y" and confirm != "n":
+                    print("Invalid response! Please enter y or n.")
+                    confirm=input("Are you sure you want to delete this student(y/n): ").lower()
+                if confirm=="y":
+                    students.remove(student)
+                    print("Student deleted successfully!!")
+                    break
+                elif confirm=="n":
+                    print("Deletion cancelled")
+                    break
+                  
+        if not found:
+            print("student not found.")                
     # OPTION 5: EXIT
     elif choice == "5":
         print("Thank you for using Student Grade Manager!")
@@ -102,3 +127,4 @@ while True:
     # INVALID MENU OPTION
     else:
         print("Invalid option! Please select between 1 and 5.")
+   
